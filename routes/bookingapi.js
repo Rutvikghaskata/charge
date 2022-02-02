@@ -24,8 +24,8 @@ router.post('/user/booking',async (req,res)=>{
   try{  
        const booking = new Booking({UserId,FirstName, LastName, ContactNo,Email,City, State, Car,Plug,Date,Time}); 
        booking.save();
-      //  const token1 = jwt.sign({bookingId:booking._id},jwtKey)
-      //  res.send({token1})
+       const token1 = jwt.sign({bookingId:booking._id},jwtKey)
+       res.send({token1})
  }catch(err){
    return res.status(422).send(err.message)
  } 
