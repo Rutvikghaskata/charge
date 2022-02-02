@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
 const bookingSchema = new mongoose.Schema({ 
      
-     // UserId:{
-     //      type:String,
-     //      required:true
-     //  },
+     UserId:{
+          type:String,
+          required:true
+      },
      FirstName:{
           type:String,
           required:true,
