@@ -14,15 +14,14 @@ router.get('/station',(req,res)=>{
 })
 router.post('/station/signup',async (req,res)=>{
    
-
-       const { ownerName,chargingStation,address,city,pincode,state,plugs,openingTime,closeTime} = req.body;   
+       const { ownerId,ownerName, StationName,ContactNo,address,city,pincode,state,plug1,Plug2,openingTime,closeTime,Latitude,Longitude,Image,rating,review,Location} = req.body;   
    
        try{
       
-       const station = new Station({ownerName,chargingStation,address,city,pincode,state,plugs,openingTime,closeTime}); 
+       const station = new Station({ownerId,ownerName, StationName,ContactNo,address,city,pincode,state,plug1,Plug2,openingTime,closeTime,Latitude,Longitude,Image,rating,review,Location}); 
        station.save();
        const token = jwt.sign({userId:station._id},jwtKey)
-       res.send({token})
+       res.send({station})
       
 
     }catch(err){

@@ -1,13 +1,23 @@
 const mongoose = require('mongoose');
 const stationSchema = new mongoose.Schema({
     
+    ownerId:{
+
+        type:String,
+        required:true,
+
+    },
     ownerName:
     {
         type:String,
         required:true,
         
     },
-    chargingStation:{
+    StationName:{
+        type:String,
+        required:true
+    },
+    ContactNo:{
         type:String,
         required:true
     },
@@ -18,8 +28,7 @@ const stationSchema = new mongoose.Schema({
     },
     city:{
         type:String,
-        required:true,
-      
+        required:true,     
     },
     pincode:{
         type:Number,
@@ -29,7 +38,12 @@ const stationSchema = new mongoose.Schema({
         type:String,
         required:true
     },
-    plugs:{
+     plug1:
+     {
+        type:String,
+        required:true
+    },
+    Plug2:{
         type:String,
         required:true
     },
@@ -41,6 +55,31 @@ const stationSchema = new mongoose.Schema({
         type:String,
         required:true
     },
+    Latitude:{
+        type:Number,
+        required:true
+    },
+    Longitude:
+    {
+        type:Number,
+        required:true
+    },
+    Image:{
+        type:String,
+        required:true
+    },
+    rating:{
+        type:Number,
+        required:true
+    },
+    review:{
+        type:Number,
+        required:true
+    },
+    Location:{
+        type:String,
+        required:true
+    }
 
 })
 mongoose.model('station',stationSchema);

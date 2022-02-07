@@ -20,9 +20,9 @@ router.get('/booking/:userId', async (req,res)=>{
 })
 router.post('/user/booking',async (req,res)=>{
    
-  const {UserId,FirstName, LastName, ContactNo,Email,City, State, Car,Plug,Date,Time} = req.body;   
+  const {UserId,FirstName, LastName, ContactNo,Email,City, State,StationName,StationContact,OwnerId,OwnerName,StationAddress,StationTiming,Car,Plug,Date,Time} = req.body;   
   try{  
-       const booking = new Booking({UserId,FirstName, LastName, ContactNo,Email,City, State, Car,Plug,Date,Time}); 
+       const booking = new Booking({UserId,FirstName, LastName, ContactNo,Email,City, State,StationName,StationContact,OwnerId,OwnerName,StationAddress,StationTiming,Car,Plug,Date,Time}); 
        booking.save();
        const token1 = jwt.sign({bookingId:booking._id},jwtKey)
        res.send({token1})

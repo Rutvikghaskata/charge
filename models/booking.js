@@ -3,7 +3,7 @@ const bookingSchema = new mongoose.Schema({
      
      UserId:{
           type:String,
-          required:true
+          required:true,
       },
      FirstName:{
           type:String,
@@ -26,6 +26,30 @@ const bookingSchema = new mongoose.Schema({
           required:true,
      },
      State:{
+          type:String,
+          required:true,
+     },
+     StationName:{
+          type:String,
+          required:true,
+     },
+     StationContact:{
+          type:String,
+          required:true,
+     },
+     OwnerId:{
+          type:Number,
+          required:true,
+     },
+     OwnerName:{
+          type:String,
+          required:true,
+     },
+     StationAddress:{
+          type:String,
+          required:true,
+     },
+     StationTiming:{
           type:String,
           required:true,
      },
