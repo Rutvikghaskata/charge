@@ -1,11 +1,13 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const jwt = require('jsonwebtoken')
+const CryptoJS = require("crypto-js");
 const emailValidator = require("email-validator");
 const jwtKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ8.eyJ1c2VySWQiOiI2MWJjNWRlMzEyODRlN2ZjYTM3OGMwMzAiLCJpYXQiOjE2Mzk3MzQ3NTV8.bHygAPHN6AUUldKvEyvLLdtWvjGYPdaxjtrPnYw88Vo"
 const router = express.Router();
 require("../models/owner")
 const Owner = mongoose.model('owner')
+const PASS_SEC = 'rutvik'
 
 router.post('/owner/signup',async (req,res)=>{  
     try { 
@@ -60,8 +62,7 @@ router.post('/owner/signin', async (req, res) => {
                 {
                   contactNo: req.body.contactNo
                 }
-            );
-            
+            ); 
             const hashedPassword = CryptoJS.AES.decrypt(
               user.password,
               PASS_SEC
