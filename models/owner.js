@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const bcrypt = require('bcrypt')
+
 const ownerSchema = new mongoose.Schema({
     
     firstName:{

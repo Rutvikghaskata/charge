@@ -38,9 +38,9 @@ app.get('/book',bookingToken,(req, res) =>{
 })
 
 app.get('/owner',ownerToken,(req, res) =>{
-    res.send("your email is"+ req.user.email);
+    res.send({ownerId:req.owner._id,firstName:req.owner.firstName,lastName:req.owner.lastName,email:req.owner.email,contactNo:req.owner.contactNo});
 })
-
+                
 
 app.listen(port ,()=>{
     console.log(`server is running on ${port}`);

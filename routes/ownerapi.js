@@ -3,15 +3,22 @@ const mongoose = require('mongoose')
 const jwt = require('jsonwebtoken')
 const CryptoJS = require("crypto-js");
 const emailValidator = require("email-validator");
-const jwtKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ8.eyJ1c2VySWQiOiI2MWJjNWRlMzEyODRlN2ZjYTM3OGMwMzAiLCJpYXQiOjE2Mzk3MzQ3NTV8.bHygAPHN6AUUldKvEyvLLdtWvjGYPdaxjtrPnYw88Vo"
+const jwtKey = "eyJhbGciOiJIUzI1NiIffsInR5cCI6IkpXVCJ1.eyJ1c2VySWQiOiI2MWJjNWRlMzEyODRlN2ZjYTM3OGMwMzAiLCJffpYXQiOjE2Mzk3MzQ3NTV2.bHygAffPHN6AUUldKvEyvLLdtWvjGYPdaxjtrPnYw88Vo"
 const router = express.Router();
 require("../models/owner")
 const Owner = mongoose.model('owner')
 const PASS_SEC = 'rutvik'
 
+
+router.get('/owner.json',(req,res)=>{
+     Owner.find().then((data)=>{
+              res.status(200).json(data);
+       })   
+   })
+
 router.post('/owner/signup',async (req,res)=>{  
     try { 
-       const newOwner = new Owner({
+       const owner = new Owner({
        firstName: req.body.firstName,
        lastName: req.body.lastName,
        email: req.body.email,
@@ -26,11 +33,11 @@ router.post('/owner/signup',async (req,res)=>{
        ).toString(),
      });
      const hashedPassword = CryptoJS.AES.decrypt(
-       newOwner.password,
+       owner.password,
        PASS_SEC
      );
      const hashedConfirmPassword = CryptoJS.AES.decrypt(
-       newOwner.confirmPassword,
+       owner.confirmPassword,
        PASS_SEC
      );
      const originalPassword = hashedPassword.toString(CryptoJS.enc.Utf8);
@@ -41,8 +48,8 @@ router.post('/owner/signup',async (req,res)=>{
          res.status(400).send('password and confirm password are not match!')
        }
        else{ 
-       newOwner.save();
-       const token = jwt.sign({OwnerId:newOwner._id},jwtKey)
+       owner.save();
+       const token = jwt.sign({ownerId:owner._id},jwtKey)
        res.send({token})
        }
       }else{
@@ -58,13 +65,13 @@ router.post('/owner/signup',async (req,res)=>{
 
 router.post('/owner/signin', async (req, res) => {
        try{
-              const user = await Owner.findOne(
+              const owner = await Owner.findOne(
                 {
                   contactNo: req.body.contactNo
                 }
             ); 
             const hashedPassword = CryptoJS.AES.decrypt(
-              user.password,
+              owner.password,
               PASS_SEC
             );
             
@@ -73,11 +80,11 @@ router.post('/owner/signin', async (req, res) => {
             console.log(req.body.password);
             const inputPassword = req.body.password;
             
-            if(!user){
+            if(!owner){
               res.status(401).json("User are not found");
              }else{
                if(originalPassword === inputPassword){
-                const token = jwt.sign({userId:user._id},jwtKey)
+                const token = jwt.sign({ownerId:owner._id},jwtKey)
                 res.status(200).json({token});    
                }
                else{
