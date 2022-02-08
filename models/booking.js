@@ -72,8 +72,9 @@ const bookingSchema = new mongoose.Schema({
      Payment:{
           type:String,
           default:"Pending"
-     }
-     
-})
+     }     
+},
+{ timestamps:true }
+)
 
 mongoose.model('booking',bookingSchema);

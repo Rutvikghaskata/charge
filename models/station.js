@@ -2,16 +2,13 @@ const mongoose = require('mongoose');
 const stationSchema = new mongoose.Schema({
     
     ownerId:{
-
         type:String,
         required:true,
-
     },
     ownerName:
     {
         type:String,
-        required:true,
-        
+        required:true,      
     },
     StationName:{
         type:String,
@@ -79,7 +76,8 @@ const stationSchema = new mongoose.Schema({
     Location:{
         type:String,
         required:true
-    }
-
-})
+    },
+}
+ 
+)
 mongoose.model('station',stationSchema);

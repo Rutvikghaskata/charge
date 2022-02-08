@@ -4,8 +4,7 @@ const ownerSchema = new mongoose.Schema({
     
     firstName:{
         type:String,
-        required:true
-        
+        required:true     
     },
     lastName:{
         type:String,
@@ -19,8 +18,7 @@ const ownerSchema = new mongoose.Schema({
     contactNo:{
         type:Number,
         unique:true,
-        required:true,
-      
+        required:true,  
     },
     password:{
         type:String,

@@ -12,6 +12,9 @@ router.get('/station',(req,res)=>{
            res.status(200).json(data);
     })   
 })
+
+
+
 router.post('/station/signup',async (req,res)=>{
    
        const { ownerId,ownerName, StationName,ContactNo,address,city,pincode,state,plug1,Plug2,openingTime,closeTime,Latitude,Longitude,Image,rating,review,Location} = req.body;   

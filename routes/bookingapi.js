@@ -1,4 +1,3 @@
-
 const express = require('express')
 const mongoose = require('mongoose')
 const router = express.Router();
@@ -28,6 +27,18 @@ router.post('/user/booking',async (req,res)=>{
  }catch(err){
    return res.status(422).send(err.message)
  } 
+})
+
+router.get('/user/bookingData/:OwnerId',async(req,res) => {
+    
+  try{           
+    const orders = await Booking.find({ OwnerId: req.params.OwnerId});
+    res.status(200).json(orders);
+ }
+catch(err)
+{
+    res.send(err.message)
+}
 })
 
 router.put('/update/payment',async(req,res)=>{
