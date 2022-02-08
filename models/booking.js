@@ -38,7 +38,7 @@ const bookingSchema = new mongoose.Schema({
           required:true,
      },
      OwnerId:{
-          type:Number,
+          type:String,
           required:true,
      },
      OwnerName:{
