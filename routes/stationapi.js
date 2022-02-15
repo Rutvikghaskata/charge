@@ -15,7 +15,7 @@ router.get('/station',(req,res)=>{
 
 
 
-router.post('/station/signup',async (req,res)=>{
+router.post('/addStation',async (req,res)=>{
    
        const { ownerId,ownerName, StationName,ContactNo,address,city,pincode,state,plug1,Plug2,openingTime,closeTime,Latitude,Longitude,Image,rating,review,Location} = req.body;   
    
