@@ -41,12 +41,12 @@ catch(err)
 }
 })
 
-router.put('/update/payment',async(req,res)=>{
+router.put('/update/payment/:BookingID',async(req,res)=>{
   
   
   try{
-    const BookingId = req.body.BookingID
-    const payment = req.body.Payment
+    const BookingId = req.params.BookingID
+    const payment = "Successfully"
     const booking = await Booking.findByIdAndUpdate(BookingId,{ $set:{Payment:payment}},{ new: true });
     
     booking.save()
